@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  producer:
+    build:
+      context: ./producer
+      dockerfile: Dockerfile
+    working_dir: /home/node/app/producer
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./producer:/home/node/app/producer
+      - ./data:/home/node/app/producer/data
+    networks:
+      - app-network
+    environment:
+      - MESSAGE_QUEUE=amqp://rabbitmq
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    links:
+      - rabbitmq
+
+  consumer:
+    build:
+      context: ./consumer
+      dockerfile: Dockerfile
+    working_dir: /home/node/app/consumer
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    volumes:
+      - ./consumer:/home/node/app/consumer
+      - ./data:/home/node/app/consumer/data
+    networks:
+      - app-network
+    environment:
+      - MESSAGE_QUEUE=amqp://rabbitmq
+    links:
+      - rabbitmq
+      
+  rabbitmq:
+    image: rabbitmq:3.7.12
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

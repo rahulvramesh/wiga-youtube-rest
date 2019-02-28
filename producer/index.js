@@ -59,7 +59,7 @@ app.post('/convert',function (req, res) {
     { cwd: __dirname });
 
     var responseJson = {"data" : {}}
-    var fileUrl = "http://localhost:8080/static/";
+    var fileUrl = "http://wiga-rest.dotlogger.com:8080/static/";
 
     video.on('info', function(info) {
         console.log('Download started');

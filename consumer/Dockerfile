@@ -8,7 +8,7 @@ RUN apk add --update \
     ffmpeg \
     apache2
 
-RUN npm install -g nodemon
+#RUN npm install -g nodemon
 
 RUN mkdir -p /home/node/app/consumer/node_modules && chown -R node:node /home/node/app
 

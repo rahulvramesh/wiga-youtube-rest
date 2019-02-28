@@ -6,7 +6,7 @@ RUN apk add --update \
     py-pip \
     build-base 
 
-RUN npm install -g nodemon
+#RUN npm install -g nodemon
 
 RUN mkdir -p /home/node/app/producer/node_modules && chown -R node:node /home/node/app 
 

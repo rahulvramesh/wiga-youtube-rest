@@ -22,4 +22,5 @@ RUN npm install
 
 COPY --chown=node:node . .
 
-CMD [ "nodemon", "index.js" ]
+#CMD [ "nodemon", "index.js" ]
+CMD [ "node", "index.js" ]

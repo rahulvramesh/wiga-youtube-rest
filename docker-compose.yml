@@ -11,6 +11,7 @@ services:
     volumes:
       - ./producer:/home/node/app/producer
       - ./data:/home/node/app/producer/data
+      - /home/node/app/producer/node_modules
     networks:
       - app-network
     environment:
@@ -32,6 +33,7 @@ services:
     volumes:
       - ./consumer:/home/node/app/consumer
       - ./data:/home/node/app/consumer/data
+      - /home/node/app/consumer/node_modules
     networks:
       - app-network
     environment:
